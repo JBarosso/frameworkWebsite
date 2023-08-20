@@ -1,0 +1,23 @@
+---
+const { type = "information", classCss } = Astro.props;
+---
+
+<div class:list={["popup", "border--md", "rounded--sm", "rfs:p--xl", type, classCss]}>
+  <div class="tt--capitalize fz-h2 fw--900">{type}</div>
+  <p class="mt--sm">
+    <slot />
+  </p>
+</div>
+
+<style lang="scss">
+  @use "../sass/variables/_colors.scss" as *;
+
+  .popup {
+    @each $class, $color in $v_popup-colors {
+      &.#{$class} {
+        border-color: $color;
+        background-color: m_shift-color($color, -90%);
+      }
+    }
+  }
+</style>
